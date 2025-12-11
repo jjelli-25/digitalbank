@@ -41,9 +41,7 @@ public class DepositPage extends BasePage {
         return currentUrl().contains(CHECKING_VIEW_PATH);
     }
 
-    public String getSuccessMessage() {
-        try { return getText(SUCCESS_ALERT); } catch (TimeoutException e) { return ""; }
-    }
+
 
     public boolean isOnDepositPage() { return currentUrl().contains(DEPOSIT_PATH); }
 }
