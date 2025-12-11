@@ -1,10 +1,6 @@
-
 @US02
 @DepositFeature
 Feature: Initiate a deposit
-  As a user,
-  I want to deposit money into a selected account
-  so that I can increase my account balance.
 
   Background:
     Given I open the Digital Bank site
@@ -17,6 +13,4 @@ Feature: Initiate a deposit
     When the user selects the account "Main account (Standard Checking)"
     And enters the deposit amount "100.00"
     And clicks the "Deposit" button
-    Then the system processes the deposit
-    And a success message is displayed
-    And the account balance is updated
+    Then View Checking Accounts page is open

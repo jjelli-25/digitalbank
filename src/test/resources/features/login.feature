@@ -1,6 +1,7 @@
 @US01
 @LoginFeature
 Feature: Login to the Digital Bank web application
+
   Background:
     Given I open the Digital Bank site
     And I accept cookies
@@ -19,6 +20,6 @@ Feature: Login to the Digital Bank web application
 
     Examples:
       | username | password  |
-      | jjelli   | 1234Start2 |
-      |          | 1234Start  |
+      | jjelli   | wrongPass |
+      |          | 1234Start |
       | jjelli   |           |
