@@ -18,6 +18,8 @@
         <selenium.version>4.24.0</selenium.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <slf4j.version>2.0.13</slf4j.version>
+        <allure.adapter.version>2.29.0</allure.adapter.version>
+        <allure.maven.version>2.12.0</allure.maven.version>
     </properties>
 
     <dependencies>
@@ -51,7 +53,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit Platform Suite API (RunCucumberTest annotációihoz) -->
+        <!-- JUnit Platform Suite API -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
@@ -64,6 +66,14 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Allure adapter for Cucumber 7 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>${allure.adapter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -83,6 +93,13 @@
                         <baseUrl>${baseUrl}</baseUrl>
                     </systemPropertyVariables>
                 </configuration>
+            </plugin>
+
+            <!-- Allure Maven plugin -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven.version}</version>
             </plugin>
         </plugins>
     </build>

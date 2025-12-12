@@ -1,3 +1,4 @@
+
 package hu.masterfield.steps;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
@@ -12,5 +13,11 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "hu.masterfield.steps")
-@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-report.html, json:target/cucumber.json")
+@ConfigurationParameter(
+        key = PLUGIN_PROPERTY_NAME,
+        value = "pretty, "
+                + "html:target/cucumber-report.html, "
+                + "json:target/cucumber.json, "
+                + "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+)
 public class RunCucumberTest {}

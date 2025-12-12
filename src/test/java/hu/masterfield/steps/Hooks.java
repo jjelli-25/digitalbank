@@ -1,12 +1,16 @@
+
 package hu.masterfield.steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.ByteArrayInputStream;
 import java.time.Duration;
 
 public class Hooks {
@@ -31,13 +35,19 @@ public class Hooks {
 
     @After
     public void tearDown(Scenario scenario) {
+        // Attach artifacts on failure
         if (scenario.isFailed() && driver != null) {
             try {
                 byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-                scenario.attach(screenshot, "image/png", "screenshot-on-failure");
-            } catch (WebDriverException ignored) {}
+                Allure.addAttachment("Failure screenshot", "image/png", new ByteArrayInputStream(screenshot), ".png");
+                String pageSource = driver.getPageSource();
+                Allure.addAttachment("Page Source", "text/html", pageSource, ".html");
+            } catch (WebDriverException ignored) { }
         }
-        if (driver != null) driver.quit();
+
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
     public static WebDriver getDriver() { return driver; }
